@@ -13,50 +13,50 @@
 	<header>
 		<div class = "goldscore">
 			<p>Your Gold:</p>
-			<div class="gold"></div>
+			<div class="gold">{{ request.session.gold_amount }}</div>
 		</div>
 	</header>
 	<main>
 		<div>
 			<h5>Farm</h5>
 			<p>(earns 10-20 golds)</p>
-			<form method="post" action="/process_money">
-				<input type="hidden" name="building" value="farm"/>
+			<form method="post" action="/process_money/farm">
+				{% csrf_token %}
 				<input type="submit" value="Find Gold!"/>
 			</form>
 		</div>
 		<div>
 			<h5>Cave</h5>
 			<p>(earns 5-10 golds)</p>
-			<form method="post" action="/process_money">
-				<input type="hidden" name="building" value="cave"/>
+			<form method="post" action="/process_money/cave">
+				{% csrf_token %}
 				<input type="submit" value="Find Gold!"/>
 			</form>
 		</div>
 		<div>
 			<h5>House</h5>
 			<p>(earns 2-5 golds)</p>
-			<form method="post" action="/process_money">
-				<input type="hidden" name="building" value="house"/>
+			<form method="post" action="/process_money/house">
+				{% csrf_token %}
 				<input type="submit" value="Find Gold!"/>
 			</form>
 		</div>
 		<div>
 			<h5>Casino</h5>
 			<p>(earns 0-50 golds)</p>
-			<form method="post" action="/process_money">
-				<input type="hidden" name="building" value="casino"/>
+			<form method="post" action="/process_money/casino">
+				{% csrf_token %}
 				<input type="submit" value="Find Gold!"/>
 			</form>
 		</div>
 	</main>
 	<div class="activities">
 		<h5>Activities</h5>
-		
+		{% for activity in request.session.activitylist %}
 		<div>
-			<p class="message"></p>
+			<p class="message">{{activity}}</p>
 		</div>
-		
+		{% endfor %}
 	</div>
 
 </body>
